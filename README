@@ -1,0 +1,40 @@
+This is a mirror of http://www.vim.org/scripts/script.php?script_id=1947
+
+Vim has many possibilites to let you find the code you want to have a look at.
+This script shows all matches of a regular expression in another buffer together with line numbers. The cursor will be placed where you have been.
+So you won't loose orientation.
+
+I think a small example will help you much to illustrate what this script can do for you
+
+The script is called autoload/vl/ui/navigation/jump_to_code_by_regex.vim
+
+and looks like :
+==============================
+[...]
+function! vl#ui#navigation#jump_to_code_by_regex#Outline(regex, ...)
+  exec vl#lib#brief#args#GetOptionalArg('try_higlight', string(0))
+[...]
+endfunction
+[...]
+function ...
+==============================
+
+After using the mapping you'll get 
+==============================
+   17  function! vl#ui#navigation#jump_to_code_by_regex#Outline(regex, ...)
+   66  function! vl#ui#navigation#jump_to_code_by_regex#JumpToPos()
+   75  function! vl#ui#navigation#jump_to_code_by_regex#AddOutlineMappings(regex)
+==============================
+Pressing enter will take you to line 17 / 66 etc..
+
+Of course you can also find definitions this way (use let as regex and you'll get)
+====================
+   19    let ft = &filetype
+   20    let file = expand('%')
+   21    let window = winnr()
+[...]
+=====================
+Pressing <c-o> will take you back
+
+I'v put some minor effort into higlighting the regular expression match. Thus you can use \zs and \ze to higlight special words.
+How nice this works depends on the already existing syntax definitions. This can be improved much
